@@ -33,3 +33,23 @@ buttonFindMax.addEventListener('click', () => {
 
     resultMaxNumber.textContent = maxNumber;
 });
+
+const inputFindNum = document.querySelector('.find-number');
+const buttonFindNum = document.querySelector('.check-number');
+const resultFind = document.querySelector('.find-result');
+
+buttonFindNum.addEventListener('click', () => checkNumber([4, 5.7, 8, 25, 28, 99]));
+
+function checkNumber(array) {
+    const inputValue = Number(inputFindNum.value);//перетворює значення в число
+    
+        if (array.includes(inputValue)) {
+            console.log('true');
+            resultFind.textContent = ` Число ${inputValue} знайдено`  ;
+         } else {
+          console.log('false');
+          resultFind.textContent = `Число ${inputValue} не знайдено`
+         }
+         inputFindNum.value = '';
+}
+
