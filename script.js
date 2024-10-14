@@ -18,3 +18,18 @@ result.textContent = sum; // результат вписуємо для спан
 });
 
 
+
+const itputFindMax = document.querySelector('.input-max-number');
+const buttonFindMax = document.querySelector('.button-max');
+const resultMaxNumber = document.querySelector('.result-max-number');
+
+buttonFindMax.addEventListener('click', () => {
+    const inputValue = itputFindMax.value;
+    
+    const inputNumber = inputValue.split(' ').map(Number);
+    
+
+    const maxNumber = Math.max(...inputNumber);
+
+    resultMaxNumber.textContent = maxNumber;
+});
