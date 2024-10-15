@@ -53,3 +53,38 @@ function checkNumber(array) {
          inputFindNum.value = '';
 }
 
+// task 4 
+const inputGuessNumbers = document.querySelector('.input-guess-number');
+const hideNumbers = document.querySelector('.hide-numbers');
+const inputTryToGuess = document.querySelector('.try-to-guess');
+const butTryToGuess = document.querySelector('.button-try-to-guess');
+const respond = document.querySelector('.respond');
+
+function handler() {
+     const guessedNumbers = inputGuessNumbers.value.split(',').map(num => num.trim()); // зберігаємо числа в масив
+     console.log("🚀 ~ handler ~ guessedNumbers:",typeof guessedNumbers)
+     localStorage.setItem('guessedNumbers', JSON.stringify(guessedNumbers));//зберігаємо у локальному сховищі
+     inputGuessNumbers.value ='';//очищаємо інпут
+     hideNumbers.textContent = 'Числа заховані!';
+}
+
+
+
+function checkGuess() {
+    const storedNumbers = JSON.parse(localStorage.getItem('guessedNumbers')); //отримаємо масив з локального сховища
+    console.log("🚀 ~ checkGuess ~ storedNumbers:", storedNumbers)
+    const userGuess = inputTryToGuess.value.trim(); //отримуємо введене число
+//перевіряємо чи введені числа чи число є в массиві
+    const isGuessed = storedNumbers.some(storedNumber => storedNumber == userGuess);
+    console.log("🚀 ~ checkGuess ~ isGuessed :", isGuessed )
+    console.log("🚀 ~ checkGuess ~ isGuessed :",typeof isGuessed )
+    if(isGuessed) {
+        respond.textContent = 'Вгадав!';
+    } else {
+        respond.textContent = 'Спробуй ще раз!';
+    }
+    inputTryToGuess.value = ''; //Очищаємо інпут для вгадування
+}
+
+hideNumbers.addEventListener('click', handler);
+butTryToGuess.addEventListener('click', checkGuess);
